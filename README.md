@@ -1,6 +1,10 @@
 
 # S/PDIF Output PMOD
 
+![S/PDIF Populatd PCB](spdif_populated_pcb.jpg)
+
+(I handsoldered it and it looks terrible, but it works...)
+
 This is a very simply S/PDIF output PMOD board for my audio experiments.
 
 Analog design isn't my strength, so I prefer something purely digital to
@@ -17,10 +21,19 @@ In additional to an S/PDIF output, the board also has 4 GPIOs. I've given the pi
 names of an I2S interface, but since they go straight to the PMOD pins, you can use
 them for anything.
 
+The total cost is around ~$30:
+
+* PCB (JLCPCB): $2 + $14 shipping (for 5 PCBs)
+* TOSLink connecter: $10
+* All the rest: ~$4
+
+The board was designed with KiCAD.
+
 ## Schematic
 
 ![S/PDIF PMOD Schematic](spdif_pmod_schematic.png)
 
+[Schematic in PDF format](pcb/pmod_spdif/pmod_spdif.pdf)
 
 ## PCB
 
