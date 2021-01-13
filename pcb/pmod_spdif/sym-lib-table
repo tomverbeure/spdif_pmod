@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name spdif_components)(type Legacy)(uri ${KIPRJMOD}/spdif_components.lib)(options "")(descr ""))
+  (lib (name custom_parts)(type Legacy)(uri ${KIPRJMOD}/custom_parts.lib)(options "")(descr ""))
+)
