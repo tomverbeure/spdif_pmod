@@ -442,7 +442,7 @@ L Device:R R4
 U 1 1 5FFDDE8F
 P 3000 2850
 F 0 "R4" V 3100 2800 50  0000 C CNN
-F 1 "R" V 2900 2800 50  0000 C CNN
+F 1 "1K" V 2900 2800 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 2930 2850 50  0001 C CNN
 F 3 "~" H 3000 2850 50  0001 C CNN
 	1    3000 2850
@@ -530,16 +530,16 @@ F 3 "~" H 4750 1050 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	3650 850  4550 850 
-Wire Wire Line
 	3650 950  4550 950 
+Wire Wire Line
+	3650 850  4550 850 
 Wire Wire Line
 	3650 1050 4550 1050
 Wire Wire Line
 	3650 1150 4550 1150
-Text Label 4050 850  0    50   ~ 0
-I2S_MCLK
 Text Label 4050 950  0    50   ~ 0
+I2S_MCLK
+Text Label 4050 850  0    50   ~ 0
 I2S_BCLK
 Text Label 4050 1050 0    50   ~ 0
 I2S_WS
@@ -664,4 +664,13 @@ NoConn ~ 10650 3050
 NoConn ~ 10650 3550
 NoConn ~ 10650 4050
 NoConn ~ 10650 4550
+NoConn ~ 1250 1250
+NoConn ~ 1250 1450
+NoConn ~ 1250 1550
+Text Notes 5250 2050 0    50   ~ 0
+Parallel HC04 drivers, copied from \nTOTX1350(F) datasheet.
+Text Notes 4250 2400 0    50   ~ 0
+0 Ohm resistor for easy\npatching if something \ndoesn't work.
+Text Notes 6150 3600 0    50   ~ 0
+TOTX1350(F)  requires 5V.
 $EndSCHEMATC

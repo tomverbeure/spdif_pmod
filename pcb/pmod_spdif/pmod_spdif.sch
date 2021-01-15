@@ -442,7 +442,7 @@ L Device:R R4
 U 1 1 5FFDDE8F
 P 3000 2850
 F 0 "R4" V 3100 2800 50  0000 C CNN
-F 1 "R" V 2900 2800 50  0000 C CNN
+F 1 "1K" V 2900 2800 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 2930 2850 50  0001 C CNN
 F 3 "~" H 3000 2850 50  0001 C CNN
 	1    3000 2850
@@ -667,4 +667,12 @@ NoConn ~ 10650 4550
 NoConn ~ 1250 1250
 NoConn ~ 1250 1450
 NoConn ~ 1250 1550
+Text Notes 5350 2000 0    50   ~ 0
+Parallel HC04 drivers, copied from \nTOTX1350(F) datasheet.\nThere might be buffers with 3V3 input\nand 5V output that can drive the TOSLINK\nLED, but I didn't want to take any chances\nand just used the reference design.
+Text Notes 4250 2400 0    50   ~ 0
+0 Ohm resistor for easy\npatching if something \ndoesn't work.
+Text Notes 6150 3600 0    50   ~ 0
+TOTX1350(F)  requires 5V.
+Text Notes 2400 3550 0    50   ~ 0
+PMOD 3V3 to 5V.\nThe HC04 buffers have Vih of 3.6V when \npowered at 5V, so regular 3V3 IOs won't do. 
 $EndSCHEMATC
