@@ -1,32 +1,16 @@
 
 # S/PDIF Optical Output PMOD
 
-Analog design isn't my strength, so when I do audio experiments with an FPGA, I prefer to
-send out the audio signal in digital format. One pretty common format
-is [S/PDIF](https://en.wikipedia.org/wiki/S/PDIF).The format supports coaxial and
-optical fiber as transport medium. I'm using optical because of the coolness factor
-(and because it once again doesn't require any analog consideration.)
-
-S/PDIF to analog converters can be found on Amazon for ~$10. 
-
-Optical S/PDIF works fine with pretty much any regular LED on a development board. You don't even 
-need a special interface: [just hold the optical cable right above the LED](https://twitter.com/tom_verbeure/status/1299565313797750784?s=20)!
-
-![S/PDIF Cable above LED](./doc/holding_cable_above_led.jpg)
-
-But that's obviously not a long term solution.
-
-This little S/PDIF output PMOD board solves that:
+* [My blog post about this project](http://tomverbeure.github.io/2021/01/18t/SPDIF-Output-PMOD.html)
 
 ![S/PDIF Populatd PCB](./doc/spdif_populated_pcb.jpg)
 
-(I handsoldered it and it looks terrible, but it works...)
-
 ![S/PDIF System](./doc/spdif_system.jpg)
 
-It has an S/PDIF optical output (TOSLINK) and 4 GPIOs. I've given the GPIO pins the
-names of an I2S interface, but since they go straight to the PMOD connector, you can use
-them for anything.
+Features:
+
+* S/PDIF optical output (TOSLINK)
+* 4 GPIOs
 
 The total cost is around ~$30:
 
