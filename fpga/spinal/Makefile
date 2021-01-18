@@ -5,5 +5,5 @@ syn:
 	sbt "runMain spdif.SpdifTopVerilogSyn"
 
 sim:
-	sbt "runMain spdif.SpdifTopVerilogSim"
+	sbt "runMain spdif.SpdifOutVerilog"
 

@@ -77,7 +77,7 @@ class SpdifOut(audioIntfcConfig: AudioIntfcConfig, clkDivRatio : Int = 1) extend
 //object MySpinalConfig extends SpinalConfig(defaultConfigForClockDomains = ClockDomainConfig(resetKind = SYNC))
 
 //Generate the MyTopLevel's Verilog using the above custom configuration.
-object SpdifVerilog{
+object SpdifOutVerilog{
     def main(args: Array[String]) {
         SpinalConfig(defaultConfigForClockDomains = ClockDomainConfig(resetKind = SYNC)).generateVerilog(new SpdifOut(AudioIntfcConfig(2, 16)))
     }
