@@ -2,8 +2,8 @@
 all: syn
 
 syn: 
-	sbt "runMain pdm.SpdifVerilogSyn"
+	sbt "runMain spdif.SpdifTopVerilogSyn"
 
 sim:
-	sbt "runMain pdm.SpdifVerilogSim"
+	sbt "runMain spdif.SpdifTopVerilogSim"
 
