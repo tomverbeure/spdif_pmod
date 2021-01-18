@@ -8,10 +8,9 @@ import spinal.lib._
 // For example, if sample rate is 48kHz, then the input clock should be at least 6.144MHz,
 // or an integer factor higher.
 
-
 case class AudioIntfcConfig(
-    maxNrChannels       : Int,
-    maxNrBitsPerSample  : Int
+    maxNrChannels       : Int,      // IMPORTANT: the current code only works for 2 channels!!!
+    maxNrBitsPerSample  : Int       
 ) { }
 
 class SpdifOut(audioIntfcConfig: AudioIntfcConfig, clkDivRatio : Int = 1) extends Component 
@@ -73,8 +72,6 @@ class SpdifOut(audioIntfcConfig: AudioIntfcConfig, clkDivRatio : Int = 1) extend
     io.spdif              := spdif_out
     io.audio_samples_rdy  := audio_samples_rdy
 }
-
-//object MySpinalConfig extends SpinalConfig(defaultConfigForClockDomains = ClockDomainConfig(resetKind = SYNC))
 
 //Generate the MyTopLevel's Verilog using the above custom configuration.
 object SpdifOutVerilog{

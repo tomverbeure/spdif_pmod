@@ -667,10 +667,12 @@ NoConn ~ 10650 4550
 NoConn ~ 1250 1250
 NoConn ~ 1250 1450
 NoConn ~ 1250 1550
-Text Notes 5250 2050 0    50   ~ 0
-Parallel HC04 drivers, copied from \nTOTX1350(F) datasheet.
+Text Notes 5350 2000 0    50   ~ 0
+Parallel HC04 drivers, copied from \nTOTX1350(F) datasheet.\nThere might be buffers with 3V3 input\nand 5V output that can drive the TOSLINK\nLED, but I didn't want to take any chances\nand just used the reference design.
 Text Notes 4250 2400 0    50   ~ 0
 0 Ohm resistor for easy\npatching if something \ndoesn't work.
 Text Notes 6150 3600 0    50   ~ 0
 TOTX1350(F)  requires 5V.
+Text Notes 2400 3550 0    50   ~ 0
+PMOD 3V3 to 5V.\nThe HC04 buffers have Vih of 3.6V when \npowered at 5V, so regular 3V3 IOs won't do. 
 $EndSCHEMATC

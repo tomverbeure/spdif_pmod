@@ -33,16 +33,36 @@ The total cost is around ~$30:
 
 The board was designed with KiCAD.
 
-## Schematic
+## SPDIF Board
+
+**Schematic**
 
 ![S/PDIF PMOD Schematic](./doc/spdif_pmod_schematic.png)
 
 [Schematic in PDF format](pcb/pmod_spdif/pmod_spdif.pdf)
 
-## PCB
+**PCB**
 
-![S/PDIF PMOD PCB](./doc/spdif_pmod_pcb.png)
+![S/PDIF PMOD PCB](./doc/spdif_pmod_pcb_front.png)
+
+![S/PDIF PMOD PCB](./doc/spdif_pmod_pcb_back.png)
 
 ![S/PDIF PMOD PCB 3D](./doc/spdif_pmod_3d.png)
+
+
+**Component list**
+
+![S/PDIF PMOD Components](./doc/spdif_pmod_component_list.png)
+
+## Example Design
+
+The PMOD was tested on an Intel Max10 development kit, but it should be trivial to make it work
+on any FPGA board that has a PMOD connector.
+
+The RTL is written in SpinalHDL, which gets converted into Verilog.
+
+There's also a small testbench that uses CXXRTL to simulate the whole thing. 
+The testbench is not self-checking. You'll need to eyeball the waveforms to verify
+that things are working...
 
 
