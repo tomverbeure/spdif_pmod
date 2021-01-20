@@ -1,5 +1,5 @@
 // Generator : SpinalHDL v1.3.5    git head : f0505d24810c8661a24530409359554b7cfa271a
-// Date      : 18/01/2021, 10:25:22
+// Date      : 19/01/2021, 15:39:36
 // Component : SpdifTop
 
 
@@ -25,6 +25,8 @@ module SpdifOut (
   wire  _zz_SpdifOut_16_;
   reg  clk_div_cntr_willIncrement;
   wire  clk_div_cntr_willClear;
+  reg [0:0] clk_div_cntr_valueNext;
+  reg [0:0] clk_div_cntr_value;
   wire  clk_div_cntr_willOverflowIfInc;
   wire  clk_div_cntr_willOverflow;
   reg  time_slot_cntr_willIncrement;
@@ -72,7 +74,7 @@ module SpdifOut (
     end
   endfunction
   wire  _zz_SpdifOut_17_;
-  assign _zz_SpdifOut_5_ = 1'b1;
+  assign _zz_SpdifOut_5_ = (clk_div_cntr_value == (1'b0));
   assign _zz_SpdifOut_6_ = ((subframe_cntr_value == (1'b0)) && (time_slot_cntr_value == (6'b000000)));
   assign _zz_SpdifOut_7_ = time_slot_cntr_willIncrement;
   assign _zz_SpdifOut_8_ = {5'd0, _zz_SpdifOut_7_};
@@ -98,8 +100,15 @@ module SpdifOut (
   assign _zz_SpdifOut_17_ = zz_clk_div_cntr_willIncrement(1'b0);
   always @ (*) clk_div_cntr_willIncrement = _zz_SpdifOut_17_;
   assign clk_div_cntr_willClear = 1'b0;
-  assign clk_div_cntr_willOverflowIfInc = 1'b1;
+  assign clk_div_cntr_willOverflowIfInc = (clk_div_cntr_value == (1'b1));
   assign clk_div_cntr_willOverflow = (clk_div_cntr_willOverflowIfInc && clk_div_cntr_willIncrement);
+  always @ (*) begin
+    clk_div_cntr_valueNext = (clk_div_cntr_value + clk_div_cntr_willIncrement);
+    if(clk_div_cntr_willClear)begin
+      clk_div_cntr_valueNext = (1'b0);
+    end
+  end
+
   always @ (*) begin
     time_slot_cntr_willIncrement = 1'b0;
     if(clk_div_cntr_willOverflow)begin
@@ -173,12 +182,14 @@ module SpdifOut (
   assign io_audio_samples_rdy = audio_samples_rdy;
   always @ (posedge clk_spdif) begin
     if(!clk_spdif_reset_) begin
+      clk_div_cntr_value <= (1'b0);
       time_slot_cntr_value <= (6'b000000);
       subframe_cntr_value <= (1'b0);
       frame_cntr_value <= (8'b00000000);
       audio_samples_rdy <= 1'b0;
       spdif_out <= 1'b0;
     end else begin
+      clk_div_cntr_value <= clk_div_cntr_valueNext;
       time_slot_cntr_value <= time_slot_cntr_valueNext;
       subframe_cntr_value <= subframe_cntr_valueNext;
       frame_cntr_value <= frame_cntr_valueNext;
@@ -188,7 +199,7 @@ module SpdifOut (
           audio_samples_rdy <= 1'b1;
         end
       end
-      if(1'b1)begin
+      if((clk_div_cntr_value == (1'b0)))begin
         if((time_slot_cntr_value < (6'b001000)))begin
           spdif_out <= preamble[time_slot_cntr_value[2 : 0]];
         end else begin

@@ -32,7 +32,7 @@ class SpdifTop() extends Component
     
     val clkSpdifRawDomain = ClockDomain(
         clock       = clk_spdif,
-        frequency   = FixedFrequency(6.144 MHz),
+        frequency   = FixedFrequency(12.288 MHz),
         config      = ClockDomainConfig(
             resetKind = BOOT
         )
@@ -56,7 +56,7 @@ class SpdifTop() extends Component
     val clkSpdifDomain = ClockDomain(
         clock       = clk_spdif,
         reset       = clk_spdif_reset_,
-        frequency   = FixedFrequency(6.144 MHz),
+        frequency   = FixedFrequency(12.288 MHz),
         config      = ClockDomainConfig(
             resetKind = SYNC,
             resetActiveLevel = LOW
@@ -71,7 +71,9 @@ class SpdifTop() extends Component
         val audio_samples_rdy     = Bool
         val audio_samples         = Vec(SInt(16 bits), 2)
 
-        val u_spdif_out = new SpdifOut(AudioIntfcConfig(maxNrChannels = 2, maxNrBitsPerSample = 16), clkDivRatio = 1)
+        // SpdifOut requires a clock that is 128x the sample rate, or an integer multiple of that.
+        // I choose a clock of 12.288MHz for clk_spdif because ECP5 FPGAs don't support clocks less than that.
+        val u_spdif_out = new SpdifOut(AudioIntfcConfig(maxNrChannels = 2, maxNrBitsPerSample = 16), clkDivRatio = 2)
         u_spdif_out.io.audio_samples_rdy    <> audio_samples_rdy
         u_spdif_out.io.audio_samples        <> audio_samples
 

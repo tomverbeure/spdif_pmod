@@ -1,5 +1,5 @@
 // Generator : SpinalHDL v1.3.5    git head : f0505d24810c8661a24530409359554b7cfa271a
-// Date      : 18/01/2021, 10:57:03
+// Date      : 19/01/2021, 15:12:25
 // Component : SpdifOut
 
 
