@@ -15,15 +15,18 @@ $(TARGET)_out.config: $(TARGET).json $(TARGET).lpf
 	nextpnr-ecp5 --25k --package CABGA381 --speed 6 --json $< --textcfg $@ --lpf $(TARGET).lpf --freq 65
 
 $(TARGET).bit: $(TARGET)_out.config
-	ecppack --svf ${TARGET}.svf $< $@
+	ecppack $< $@
 
 pll.v: Makefile
 	$(TRELLIS)/../../bin/ecppll -n pll --clkin_name inclk0 --clkout0_name c0 -i 25 -o 12.288 -f pll.v
 
 ${TARGET}.svf : ${TARGET}.bit
 
-prog: ${TARGET}.svf
-	openFPGALoader -c digilent_hs2 $(TARGET).bit
+prog: ${TARGET}.bit
+	ecpdap program --freq 5000 $(TARGET).bit
+
+flash: ${TARGET}.bit
+	ecpdap flash write --freq 5000 $(TARGET).bit
 
 clean:
 	rm -f *.svf *.bit *.config *.ys *.json
